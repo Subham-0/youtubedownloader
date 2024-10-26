@@ -7,9 +7,9 @@ async function getVideoDetails() {
         document.getElementById('result').innerText = 'Invalid YouTube URL';
         return;
     }
-    //const response = await fetch(`https://youtubedownloader.vercel.app/video/details?videoId=${videoId}`);
+    const response = await fetch(`https://youtubedownloader.vercel.app/video/details?videoId=${videoId}`);
 
-    const response = await fetch(`http://localhost:3000/video/details?videoId=${videoId}`);
+    //const response = await fetch(`http://localhost:3000/video/details?videoId=${videoId}`);
     const data = await response.json();
 
     // Display video and audio data

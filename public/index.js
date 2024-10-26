@@ -7,13 +7,31 @@ async function getVideoDetails() {
         document.getElementById('result').innerText = 'Invalid YouTube URL';
         return;
     }
+    try{
     const response = await fetch(`https://youtubedownloader.vercel.app/video/details?videoId=${videoId}`);
 
     //const response = await fetch(`http://localhost:3000/video/details?videoId=${videoId}`);
+    
+    // Check if the response is not OK (status not 200)
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    // Check if the response is in JSON format
+    const contentType = response.headers.get('content-type');
+    if (!contentType || contentType.indexOf('application/json') === -1) {
+        throw new Error('Expected JSON, but received a different response');
+    }
+    
+    
     const data = await response.json();
 
     // Display video and audio data
     displayData(data);
+} catch (error) {
+    console.error('Error fetching video details:', error);
+    document.getElementById('result').innerText = 'Failed to load video details. Please try again later.';
+}
 }
 
 // Function to display video and audio data

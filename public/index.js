@@ -11,9 +11,18 @@ async function getVideoDetails() {
     //const response = await fetch(`https://youtubedownloader.vercel.app/video/details?videoId=${videoId}`);
 
     const response = await fetch(`http://localhost:3000/video/details?videoId=${videoId}`);
-    
-    const data = await response.json();
+    const text = await response.text(); // Get the response as plain text
+    console.log("Raw response:", text);
 
+    let data ;
+    try {
+        data = JSON.parse(text); // Try to parse the response as JSON
+    } catch (error) {
+        console.error("Error parsing JSON:", error);
+        document.getElementById('result').innerText = 'Failed to parse response. Please try again later.';
+        return;
+    }
+    
     // Display video and audio data
     displayData(data);
 } catch (error) {

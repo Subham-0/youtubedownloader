@@ -12,14 +12,6 @@ async function getVideoDetails() {
 
     const response = await fetch(`http://localhost:3000/video/details?videoId=${videoId}`);
     
-    // Check if the response is not OK (status not 200)
-    if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    
-    
-    
     const data = await response.json();
 
     // Display video and audio data

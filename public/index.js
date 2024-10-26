@@ -17,11 +17,7 @@ async function getVideoDetails() {
         throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    // Check if the response is in JSON format
-    const contentType = response.headers.get('content-type');
-    if (!contentType || contentType.indexOf('application/json') === -1) {
-        throw new Error('Expected JSON, but received a different response');
-    }
+    
     
     
     const data = await response.json();

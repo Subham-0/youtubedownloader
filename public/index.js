@@ -8,9 +8,9 @@ async function getVideoDetails() {
         return;
     }
     try{
-    const response = await fetch(`https://youtubedownloader.vercel.app/video/details?videoId=${videoId}`);
+    //const response = await fetch(`https://youtubedownloader.vercel.app/video/details?videoId=${videoId}`);
 
-    //const response = await fetch(`http://localhost:3000/video/details?videoId=${videoId}`);
+    const response = await fetch(`http://localhost:3000/video/details?videoId=${videoId}`);
     
     // Check if the response is not OK (status not 200)
     if (!response.ok) {

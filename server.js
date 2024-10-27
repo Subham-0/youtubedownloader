@@ -1,13 +1,21 @@
 const express = require('express');
 const axios = require('axios');
-const cors = require('cors');
 const path = require('path');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // Allow all origins, or specify your domain
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
+
 
 // Serve the HTML file
 app.use(express.static(path.join(__dirname, 'public')));
